@@ -1,0 +1,55 @@
+function Auto_fill_form() {
+  
+  
+  var wrkBk = SpreadsheetApp.getActiveSpreadsheet();
+  var wrkSht = wrkBk.getSheetByName("Sheet1");
+  
+  var formURL =""
+  var formData = ""
+
+  var aname = "";
+  var bname = "";
+  var cname = "";
+  var dname = "";
+  var ename = "";
+  var fname = "";
+  var gname = "";
+  var hname = "";
+  var iname = "";
+  var jname = "";
+  var kname = "";
+
+
+  var noOfRows = wrkSht.getRange("L1").getDisplayValue();
+  
+  for (i=2;i<=noOfRows;i++)
+  {
+    aname = wrkSht.getRange("A" + i).getDisplayValue();
+    bname = wrkSht.getRange("B" + i).getDisplayValue();
+    cname = wrkSht.getRange("C" + i).getDisplayValue();
+    dname = wrkSht.getRange("D" + i).getDisplayValue();
+    ename = wrkSht.getRange("E" + i).getDisplayValue();
+    fname = wrkSht.getRange("F" + i).getDisplayValue();
+    gname = wrkSht.getRange("G" + i).getDisplayValue();
+    hname = wrkSht.getRange("H" + i).getDisplayValue();
+    iname = wrkSht.getRange("I" + i).getDisplayValue();
+    jname = wrkSht.getRange("J" + i).getDisplayValue();
+    kname = wrkSht.getRange("K" + i).getDisplayValue();
+
+
+
+    formURL = "https://docs.google.com/forms/d/e/1FAIpQLSdTMGZcYvnopvr3o03W_o-r-BZXsQEJG120eTwm5fKWxz7Z1Q/formResponse?&pageHistory=0"
+    
+    formData = "&emailAddress="+ aname + "&entry.1011721906="+ bname +"&entry.940486853="+ cname + "&entry.1240061911="+ dname +"&entry.316696509="+ ename + "&entry.100515331="+ fname + "&entry.350627168="+ gname + "&entry.365533124="+ hname + "&entry.560262355="+ iname + "&entry.1833679492="+ jname + "&entry.1097708752="+ kname 
+    
+  
+    var finalURL = formURL + formData
+  
+    var options = {
+      "method" : "post"
+    };
+  
+    UrlFetchApp.fetch(finalURL, options);
+  }
+  
+}
